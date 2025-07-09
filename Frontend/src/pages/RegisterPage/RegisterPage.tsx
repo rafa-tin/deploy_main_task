@@ -33,7 +33,7 @@ const RegistrationPage: React.FC = () => {
   const onSubmit = async (data: RegistrationPropsInput) => {
   try {
     const cleanPhone = data.phoneNumber.replace(/\D/g, ''); 
-    const response = await fetch('https://91b9a7a20270.ngrok-free.app/auth/register', {
+    const response = await fetch('https://78bcd138945f.ngrok-free.app/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
