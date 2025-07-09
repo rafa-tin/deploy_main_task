@@ -72,7 +72,7 @@ const boardData: ColumnType[] = [
 const MainPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"table" | "board">("board");
-  const [columns, setColumns] = useState<ColumnType[]>(boardData);
+  const [columns, /*setColumns*/] = useState<ColumnType[]>(boardData);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
