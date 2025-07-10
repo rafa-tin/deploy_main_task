@@ -24,7 +24,7 @@ const MainPage: React.FC = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch('http://localhost:8080/task', {
+        const response = await fetch('https://683470ee4190.ngrok-free.app/task', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!response.ok) throw new Error('Failed to fetch tasks');
