@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
     try {
       const cleanPhone = data.phoneNumber.replace(/\D/g, "");
 
-      const response = await fetch("https://683470ee4190.ngrok-free.app/auth/login", {
+      const response = await fetch("https://3b3ee96c13c6.ngrok-free.app/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
