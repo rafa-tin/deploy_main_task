@@ -1,6 +1,6 @@
 import React from 'react';
 import { type ColumnType, type CardItem } from '../../../types';
-import './TableView.css';
+import './Tableview.css';
 
 interface Props {
   columns: ColumnType[];
