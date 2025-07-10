@@ -15,7 +15,7 @@ interface BoardProps {
 const Board: React.FC<BoardProps> = ({ columns, onAddCard, onEditCard, onSave, onDelete }) => {
   const [showModal, setShowModal] = useState(false);
   const [activeCard, setActiveCard] = useState<CardItem | null>(null);
-  const [activeColumnId, setActiveColumnId] = useState<string | null>(null);
+  const [/*activeColumnId*/, setActiveColumnId] = useState<string | null>(null);
 
   const handleAddCard = (columnId: string) => {
     setActiveColumnId(columnId);
