@@ -33,33 +33,32 @@ const RegistrationPage: React.FC = () => {
 
   const onSubmit = async (data: RegistrationPropsInput) => {
   try {
-    const cleanPhone = data.phoneNumber.replace(/\D/g, '');
+    const cleanPhone = data.phoneNumber.replace(/\D/g, ''); 
     const response = await fetch('https://3b3ee96c13c6.ngrok-free.app/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         fullName: data.fullName,
-        phoneNumber: cleanPhone,
+        phoneNumber: cleanPhone, 
         password: data.password,
         confirmPassword: data.confirmPassword,
       }),
     });
-
+    
     const result = await response.json();
-
     if (response.ok) {
       const token = result.token;
-      localStorage.setItem('accessToken', token);
       toast.success('New account successfully created');
-      console.log("success", data, "token:", token);
+      localStorage.setItem("accessToken", token); // Clear refresh token
+      console.log("success", data);
       navigate('/main', { replace: true });
     } else {
+      console.log(data);
       toast.error(result.message || 'Registration failed');
     }
   } catch (e) {
     toast.error('Server error');
   }
-};
 };
 
   return (
