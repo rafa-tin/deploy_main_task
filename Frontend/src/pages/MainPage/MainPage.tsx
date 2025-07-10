@@ -5,7 +5,7 @@ import UserInfo from '../../components/UserInfo/UserInfo';
 import Board from '../../components/Dashboard/Board/Board';
 import TableView from '../../components/Dashboard/Tableview/Tableview';
 import Loader from '../../components/Loader/Loader';
-import type { ColumnType, CardItem } from '../../types';
+import type { ColumnType, CardItem, Status } from '../../types';
 import { useAuth } from '../../hooks/useAuth';
 
 const MainPage: React.FC = () => {
@@ -38,7 +38,8 @@ const MainPage: React.FC = () => {
         ];
 
         tasks.forEach((task) => {
-          const status = task.status?.toUpperCase();
+          // Безопасное приведение статуса к верхнему регистру и типу Status
+          const status = (task.status || 'TODO').toUpperCase() as Status;
           const col = columnsMap.find((c) => c.id === status);
           if (col) col.cards.push(task);
         });
@@ -78,8 +79,8 @@ const MainPage: React.FC = () => {
       }
 
       const url = isNew
-        ? 'http://localhost:8080/task'
-        : `http://localhost:8080/task/${card.id}`;
+        ? 'https://683470ee4190.ngrok-free.app/task'
+        : `https://683470ee4190.ngrok-free.app/task/${card.id}`;
 
       const response = await fetch(url, {
         method: isNew ? 'POST' : 'PUT',
@@ -126,7 +127,7 @@ const MainPage: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:8080/task/${id}`, {
+      const response = await fetch(`https://683470ee4190.ngrok-free.app/task/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -142,6 +143,11 @@ const MainPage: React.FC = () => {
     } catch (err) {
       console.error('Error deleting task:', err);
     }
+  };
+
+  // Обработка drag-and-drop изменений колонок
+  const handleColumnsChange = (newColumns: ColumnType[]) => {
+    setColumns(newColumns);
   };
 
   if (isLoading) return <Loader />;
@@ -196,9 +202,14 @@ const MainPage: React.FC = () => {
               onEditCard={(card, id) => console.log('Edit card', card, id)}
               onSave={handleSave}
               onDelete={handleDelete}
+              onColumnsChange={handleColumnsChange}
             />
           ) : (
-            <TableView columns={columns} onAddCard={() => {}} />
+            <TableView
+              columns={columns}
+              onAddCard={() => {}}
+              onEditCard={(card) => console.log('Edit card from TableView', card)}
+            />
           )}
         </div>
       </main>
