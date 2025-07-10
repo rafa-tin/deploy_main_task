@@ -4,6 +4,8 @@ import type { ColumnType, CardItem, Status } from "../../../types";
 import { DragDropContext, Droppable, Draggable, type DropResult } from "@hello-pangea/dnd";
 import "./Board.css";
 import { Card } from "../Card/Card";
+import { Column } from "../Column/Column";
+
 
 interface BoardProps {
   columns: ColumnType[];
