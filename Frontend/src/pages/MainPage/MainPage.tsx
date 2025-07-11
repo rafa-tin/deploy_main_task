@@ -24,7 +24,7 @@ const MainPage: React.FC = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch('https://3b3ee96c13c6.ngrok-free.app/task', {
+        const response = await fetch('https://bfa686a7ef88.ngrok-free.app/task', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!response.ok) throw new Error('Failed to fetch tasks');
@@ -79,8 +79,8 @@ const MainPage: React.FC = () => {
       }
 
       const url = isNew
-        ? 'https://3b3ee96c13c6.ngrok-free.app/task'
-        : `https://3b3ee96c13c6.ngrok-free.app/${card.id}`;
+        ? 'https://bfa686a7ef88.ngrok-free.app/task'
+        : `https://bfa686a7ef88.ngrok-free.app/${card.id}`;
 
       const response = await fetch(url, {
         method: isNew ? 'POST' : 'PUT',
@@ -127,7 +127,7 @@ const MainPage: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`https://3b3ee96c13c6.ngrok-free.app/task/${id}`, {
+      const response = await fetch(`https://bfa686a7ef88.ngrok-free.app/task/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -18,7 +18,9 @@ public class CorsConfig {
         // Allow specific origins
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
-                "http://localhost:4200"
+                "http://localhost:4200",
+                "https://bfa686a7ef88.ngrok-free.app",
+                "https://deploy-main-task.vercel.app"
         ));
 
         // Allow all methods
